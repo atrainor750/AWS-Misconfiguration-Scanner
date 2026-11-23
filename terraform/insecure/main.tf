@@ -1,5 +1,4 @@
-# Deliberately INSECURE lab environment for the AWS misconfiguration scanner.
-# Written by: <you>
+# Deliberately INSECURE lab environment 
 
 terraform {
   required_providers {
