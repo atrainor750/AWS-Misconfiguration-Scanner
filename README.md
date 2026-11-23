@@ -4,6 +4,9 @@ Built a deliberately insecure AWS environment with Terraform, then wrote a scann
 
 Scanner output:
 
+<img width="739" height="94" alt="Screenshot 2026-11-23 at 17 29 17" src="https://github.com/user-attachments/assets/239656b7-6edf-4fe6-91b2-c19a623180b8" />
+
+
 ## How it works
 
 The lab (Terraform): an S3 bucket with Block Public Access off, a security group open to the internet on 22 and 3389, and an IAM user with AdministratorAccess and no MFA. There's no CloudTrail on purpose. Nothing is actually exposed: the bucket is empty with no public policy, the security group isn't attached to anything, and the IAM user has no password or access keys.
