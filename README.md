@@ -21,7 +21,26 @@ The scanner (Python): each check queries one AWS service and returns Finding obj
 - **S3 public access** (CIS 2.1.4): buckets with Block Public Access turned off or not configured
 - **Over-privileged IAM users** (CIS 1.15): AdministratorAccess attached directly to a user
 - **Missing MFA** (CIS 1.10): IAM users with no MFA device
-- **No audit logging** (CIS 3.1): no CloudTrail trail in the account
+
+- 
+## Monitoring
+
+<img width="598" height="580" alt="Screenshot 2026-11-24 at 15 34 38" src="https://github.com/user-attachments/assets/f75bce34-2399-4ef4-b26f-c5a17722cf13" />
+
+<img width="431" height="306" alt="Screenshot 2026-11-24 at 15 57 36" src="https://github.com/user-attachments/assets/485dac3b-b792-436a-ab7d-a0121f5f2d42" />
+
+
+<img width="449" height="608" alt="Screenshot 2026-11-24 at 15 57 28" src="https://github.com/user-attachments/assets/165f93bc-c507-4be4-801c-e266e4942084" />
+
+
+
+I wanted to see the findings change over time instead of just reading terminal output, so I turned the scanner into a Prometheus exporter. Every few minutes it reruns all four checks and publishes the number of findings for each check and severity. The first screenshot is the raw metrics page the exporter serves, with one line per check and severity, all at zero after the fix.
+
+Prometheus scrapes those metrics and Grafana turns them into a dashboard. The "Findings over time" graph shows the insecure lab at 3 HIGH and 3 MEDIUM findings. MEDIUM drops to 2 when I added MFA to my own admin account, which the scanner had flagged. The gap is where I stopped the exporter to swap the labs over, and once the hardened Terraform was applied everything dropped to zero. The "Findings by check" chart confirms every check is now clean.
+
+The last screenshot is the HIGH findings panel, which turns green at zero and red as soon as there's even one HIGH finding.- **No audit logging** (CIS 3.1): no CloudTrail trail in the account
+
+
 
 ## Running it
 
@@ -37,6 +56,6 @@ source .venv/bin/activate
 pip install boto3
 python scanner.py
 
-# 3. clean up when you're done
+# 3. clean up when done
 cd ../terraform/insecure
 terraform destroy
