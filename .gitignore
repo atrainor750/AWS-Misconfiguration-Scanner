@@ -17,3 +17,4 @@ __pycache__/
 # Reports and secrets
 reports/
 .env
+.DS_Store

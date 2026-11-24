@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 30s        # metric fetching
+
+scrape_configs:
+  - job_name: aws-scanner
+    static_configs:
+      - targets: ["host.docker.internal:8000"]   
