@@ -38,7 +38,7 @@ I wanted to see the findings change over time instead of just reading terminal o
 
 Prometheus scrapes those metrics and Grafana turns them into a dashboard. The "Findings over time" graph shows the insecure lab at 3 HIGH and 3 MEDIUM findings. MEDIUM drops to 2 when I added MFA to my own admin account, which the scanner had flagged. The gap is where I stopped the exporter to swap the labs over, and once the hardened Terraform was applied everything dropped to zero. The "Findings by check" chart confirms every check is now clean.
 
-The last screenshot is the HIGH findings panel, which turns green at zero and red as soon as there's even one HIGH finding.- **No audit logging** (CIS 3.1): no CloudTrail trail in the account
+The  HIGH findings panel turns green at zero and red as soon as there's even one HIGH finding.- **No audit logging** (CIS 3.1): no CloudTrail trail in the account
 
 
 
